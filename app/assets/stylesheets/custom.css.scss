@@ -1,0 +1,129 @@
+$navbar-inverse-bg: black;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 70px;
+}
+
+.main_container {
+  margin-bottom: 50px;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: asset-url('624664.png');
+  background-size: cover;
+  height: 470px;
+}
+
+.jumbotron h1 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.btn-xlarge {
+  font-size: 1.7em;
+  background-color: black;
+}
+
+.event-actions {
+  border-top: 1px solid #eaeaea;
+  padding-top: 5px;
+}
+
+.event-meta-details {
+  border-top: 1px solid #ea
+  aea;
+  margin-top: 15px;
+}
+
+.description {
+  margin-top: 0;
+}
+ 
+.event-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.event-body {
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+footer {
+  position: fixed;
+  background-color: #ffffff;
+  bottom: 0;
+  width: 100%;
+  margin-top: 45px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+.listing {
+  list-style: none;
+  padding-left: 0;
+}
+
+.user_info_table {
+  margin: auto;
+}
+
+.user_data, .user.caption {
+  font-size: 1.2em;
+}
+
+.user_data {
+  padding-left: 10px;
+  text-align: left;
+}
+
+.user_caption{
+  font-weight: bold;
+  text-align: right;
+}
