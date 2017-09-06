@@ -34,7 +34,7 @@ To do this, the followings are needed:-
 
 Extension:-
 
-Users should be able to sign in the system if he / she does not have any account and will be required to provide name, email id & password while creating account for the first time.
+	Users should be able to sign in the system if he / she does not have any account and will be required to provide name, email id & password while creating account for the first time.
 
     If the user is an existing user then he / she will be able to login the system.
 
