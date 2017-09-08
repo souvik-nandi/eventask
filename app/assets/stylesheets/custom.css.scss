@@ -48,12 +48,12 @@ body {
   background-color: black;
 }
 
-.event-actions {
+.event-actions, .task-actions {
   border-top: 1px solid #eaeaea;
   padding-top: 5px;
 }
 
-.event-meta-details {
+.event-meta-details, .task-meta-details {
   border-top: 1px solid #ea
   aea;
   margin-top: 15px;
@@ -63,12 +63,12 @@ body {
   margin-top: 0;
 }
  
-.event-title {
+.event-title, .task-title {
   font-weight: bold;
   font-size: 1.5em;
 }
 
-.event-body {
+.event-body, .task-body {
   border-top: 1px solid #eaeaea;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -126,4 +126,20 @@ footer ul li {
 .user_caption{
   font-weight: bold;
   text-align: right;
+}
+
+.tasks_count {
+  float:right;
+  color: #187999;
+  text-decoration: italic;
+  font-size: 0.8em;
+}
+
+.create_task {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+td span.label {
+  width: 25px;
 }

@@ -1,0 +1,39 @@
+<h4>Tasks Table</h4>
+<div class="table-responsive">
+  <table class="table table-bordred table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Created by</th>
+        <th>Completion status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% obj.each do |task| %>
+      <tr>
+        <td><%= link_to task.title, event_task_path(task.event,task) %></td>
+        <td><%= truncate(task.description, length: 50) %></td>
+        <td><%= task.deadline.localtime %></td>
+        <td><%= link_to task.user.username, user_path(task.user) %></td>
+        <td>
+          <% if task.completed %>
+            <span class="label label-success">Completed</span>
+          <% elsif task.deadline < Time.now %>
+            <span class="label label-danger">Due</span>
+          <% else %>
+            <span class="label label-warning">Pending</span>
+          <% end %>
+          
+        </td>
+        <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_event_task_path(task.event_id, task), class: "btn btn-xs btn-primary" %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, event_task_path(task.event_id, task), method: :delete, data: { confirm: "Are you sure you want to delete the task?"}, class: "btn btn-xs btn-danger" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :events, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   before_save { self.email = email.downcase }
 
   validates :fname, presence: true

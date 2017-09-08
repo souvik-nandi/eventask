@@ -5,10 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 User.create(fname: 'Souvik', lname: 'Nandi', username: 'souvikn24', email: 'souviknandi24@gmail.com', password: 'password', admin: true)
 User.create(fname: 'Souvik', lname: 'Nandi', username: 'souvik24', email: 'souvikn24@gmail.com', password: 'password')
 User.create(fname: 'Subham', lname: 'Sah', username: 'subham', email: 'subhamsah884@gmail.com', password: '12345678')
 User.create(fname: 'Vishal', lname: 'Vidyarthi', username: 'vishal', email: 'itsmevis@gmail.com', password: '12345678')
+User.create(fname: 'Alpha', lname: 'Beta', username: 'alpha', email: 'alpha@beta.com', password: '12345678')
 
 Event.create(title: 'HTML Slicing Project', description: 'Kreeti Technologies Pvt. Ltd., HTML Slicing Project is to create a responsive Web Page as shown in the attached file using HTML,CSS & Bootstrap. It should work in all devices like Desktop, Mobile & Tablet. The feel & look must be same as shown.', user_id: 1)
 Event.create(title: 'Sql Injection Prevention System', description: 'Develop a secure path for transaction done by the user. Using AES (Advanced Encryption Standard) encryption technique, the transaction and user account details can be made secured.', user_id: '1')
@@ -26,3 +28,9 @@ Event.create(title: 'Android Smart City Traveler', description: 'This applicatio
 Event.create(title: 'Antenna Positioning System', description: 'System uses an ARM controller along with dc motors with and antenna mounted to achieve this need.', user_id: '4')
 Event.create(title: 'Collision Detection Robotic Vehicle', description: 'he vehicle uses an ultrasonic sensor with arm controller to achieve this purpose.', user_id: '4')
 Event.create(title: 'Speed Control Of Electric Car', description: 'The device allows the user to send commands through an android device via Bluetooth connection.', user_id: '4')
+
+Task.create(title: "Bootstrap", description: "Setup bootstrap and install a text editor of choice", deadline: "2017-09-08 12:00:00", user_id: 1, event_id: 1)
+Task.create(title: "CSS styling", description: "Proper use of resources while styling using CSS", deadline: "2017-09-09 12:00:00", user_id: 1, event_id: 1)
+Task.create(title: "HTML DOM", description: "Semantic use of resources in HTML", deadline: "2017-09-09 12:30:00", user_id: 1, event_id: 1)
+Task.create(title: "HTML DOM", description: "Semantic use of resources in HTML", deadline: "2017-09-09 12:30:00", user_id: 5, event_id: 17)
+Task.create(title: "HTML DOM", description: "Semantic use of resources in HTML", deadline: "2017-09-05 12:30:00", user_id: 5, event_id: 18)
