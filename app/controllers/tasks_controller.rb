@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_event
-  before_action :set_task, only: [:edit, :update, :show, :destroy]
-  before_action :set_toggle_task, only: [:completed_toggle]
-  before_action :require_user, except: [:index, :show]
-  before_action :require_same_user, only: [:edit, :update, :destroy, :completed_toggle]
-  before_action :require_event_user, only: [:new, :create]
+  before_action :set_task, only: [:edit, :update, :destroy, :show]
+  before_action :set_toggle_task, only: [:completed, :allocation, :userallocate, :userdeallocate]
+  before_action :require_user
+  before_action :require_task_users, only: [:edit, :update, :destroy, :completed]
+  before_action :require_admin, only: [:allocation, :userallocate, :userdeallocate]
 
   def index
     @tasks = @event.tasks.paginate(page: params[:page], per_page: 5)
@@ -41,12 +41,33 @@ class TasksController < ApplicationController
   def show
   end
 
-  def completed_toggle
+  def completed
     @task.completed = true
     if @task.save
       redirect_to event_tasks_path
       flash[:success] = "Task is succesfully completed"
     end
+  end
+
+  def allocation
+    @ausers = @task.users
+    @dusers = User.where.not(id: @ausers.ids)
+  end
+
+  def userallocate
+    @user = params[:user]
+    @allocation = Allocation.new(task_id: @task.id, user_id: @user)
+    if @allocation.save
+      redirect_to event_task_allocation_path(@task.event, @task)
+      flash[:success] = "#{User.find(@user).username} is succesfully added"
+    end
+  end
+
+  def userdeallocate
+    @user = params[:user]
+    Allocation.where("task_id = :t AND user_id = :u", {t: @task.id, u: @user}).destroy_all
+    redirect_to event_task_allocation_path(@task.event, @task)
+    flash[:danger] = "#{User.find(@user).username} is succesfully removed"
   end
 
   def destroy
@@ -72,17 +93,17 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :description, :deadline)
     end
 
-    def require_same_user
-      if current_user != @task.user and !current_user.admin?
-        flash[:danger] = "You can only edit or delete your own task"
+    def require_task_users
+      if !@task.users.include?current_user and !current_user.admin?
+        flash[:danger] = "You can only edit or delete your own tasks"
         redirect_to event_tasks_path
       end 
     end
 
-    def require_event_user
-      if current_user != @event.user and !current_user.admin?
-        flash[:danger] = "You are not authorized to perform the action"
-        redirect_to event_tasks_path
+    def require_admin
+      if !current_user.admin?
+        flash[:danger] = "Admin permission required"
+        redirect_to root_path
       end 
     end
 end

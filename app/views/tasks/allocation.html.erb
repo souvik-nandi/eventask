@@ -1,0 +1,66 @@
+<h1 align="center">Task Allocations</h1>
+
+<h3 align="center"><%= link_to @task.title, event_task_path(@task.event, @task) %></h3>
+
+
+<h3>Current Users</h3>
+<div align="center">  
+  <table class="table table-bordred table-striped">
+    <thead>
+      <tr>
+        <th>UserId</th>
+        <th>UserName</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>No. of Events</th>
+        <th>No. of Tasks</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ausers.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.username, user_path(user) %></td>
+        <td><%= user.fname + ' ' + user.lname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.events.count %></td>
+        <td><%= user.tasks.count %></td>
+        <td><%= link_to "Remove User", event_task_userdeallocate_path(@event, @task, user: user), class: "btn btn-xs btn-danger" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<h3>Other Users</h3>
+<div align="center">
+  <table class="table table-bordred table-striped">
+    <thead>
+      <tr>
+        <th>UserId</th>
+        <th>UserName</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>No. of Events</th>
+        <th>No. of Tasks</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dusers.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.username, user_path(user) %></td>
+        <td><%= user.fname + ' ' + user.lname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.events.count %></td>
+        <td><%= user.tasks.count %></td>
+        <td><%= link_to "Add User", event_task_userallocate_path(@event, @task, user: user), class: "btn btn-xs btn-success" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

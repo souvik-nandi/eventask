@@ -1,0 +1,45 @@
+<div class="table-responsive">
+  <table class="table table-bordred table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Created by</th>
+        <th>Associated Event</th>
+        <th>Completion status</th>
+        <th>Allocate users</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% obj.each do |t| %>
+      <tr>
+        <td><%= link_to t.title, event_task_path(t.event, t) %>
+        <td><%= truncate(t.description, length: 50) %></td>
+        <td><%= t.deadline.localtime %></td>
+        <td>
+        <% if t.user %>
+        <%= link_to t.user.username, user_path(t.user) %>
+        <% else %>
+          unknown
+        <% end %> 
+        </td>
+        <td><%= link_to truncate(t.event.title, length: 20), event_path(t.event), class: "btn btn-xs btn-primary" %></td>
+        <td>
+          <% if t.completed %>
+            <span class="label label-success">Completed</span>
+          <% elsif t.deadline < Time.now %>
+            <span class="label label-danger">Due</span>
+          <% else %>
+            <span class="label label-warning">Pending</span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Edit Users", event_task_allocation_path(t.event, t), class: "btn btn-xs btn-default" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

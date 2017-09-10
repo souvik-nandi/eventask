@@ -13,10 +13,13 @@
         <li>
           <small>
             <%= pluralize(user.events.count, "event") if user.events %> 
+          </small>|
+          <small>
+            <%= pluralize(user.tasks.count, "task") if user.tasks %> 
           </small>
         </li>
         <% if logged_in? and current_user.admin? %>
-        <li><%= link_to "Delete this user", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete the user and all their events"} %>
+        <li><%= link_to "Delete this user", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete the user and all their events"}, class: "btn btn-xs btn-danger" %>
         </li>
         <% end %>
       </div>

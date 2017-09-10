@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :require_user, except: [:new, :create]
   before_action :set_user, only: [:edit, :update, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:destroy]
@@ -39,12 +39,20 @@ class UsersController < ApplicationController
   def show
     if logged_in? && current_user == @user
       @user.tasks.each do |task|
-        if task.deadline < Time.now 
-          flash.now[:danger] = "#{task.title} is due on #{task.deadline}"
+        if task.deadline < Time.now and !task.completed
+          if flash.now[:danger]
+            flash.now[:danger] += "<br><br><b>#{task.title}</b> is due on #{task.deadline}"
+          else
+            flash.now[:danger] = "<b>#{task.title}</b> is due on #{task.deadline}"
+          end
         end
       end
     end
     @user_events = @user.events.paginate(page: params[:page], per_page: 5)
+  end
+
+  def tasks
+    @tasks = current_user.tasks
   end
 
   def destroy

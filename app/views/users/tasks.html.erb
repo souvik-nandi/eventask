@@ -1,0 +1,9 @@
+<h1 align="center">My Tasks</h1>
+
+<% if @tasks.count > 0 %>
+<%= render 'tasks/task', obj: @tasks %>
+<% else %>
+<div class="task-actions center">
+  <em>You currently do not have any tasks.</em>
+</div>
+<% end %>

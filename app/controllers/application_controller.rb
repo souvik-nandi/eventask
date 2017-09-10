@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :flash_message, :multiple_flash
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -21,4 +21,15 @@ class ApplicationController < ActionController::Base
   def restore_session
     session[:user_id] = nil
   end
+
+  def flash_message(type, msg)
+    flash[type] ||= []
+    flash[type] << msg
+  end
+
+  def add_message(type, text)
+    @messages ||= []
+    @messages.push({type: type, text: text})
+  end
+
 end
