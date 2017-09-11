@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :events, dependent: :nullify
-  has_many :allocations
+  has_many :expenses, dependent: :destroy
+  has_many :allocations, dependent: :destroy
   has_many :tasks, through: :allocations
   
   before_save { self.email = email.downcase }

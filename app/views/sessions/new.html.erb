@@ -18,7 +18,7 @@
   </div>
 
   <div class="col-sm-8">
-    <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+    <%= f.password_field :password, class: "form-control", placeholder: "Enter password", autocomplete: "off" %>
   </div>
 </div>
 
@@ -29,6 +29,6 @@
 </div>
 
 <% end %>
-<div class="col-xs-4 col-xs-offset-4">
-  [ <%= link_to "Cancel request and return to events listing", events_path %> ]
+<div align="center">
+  [ <%= link_to "Not a member go to Sign up page", signup_path %> ]
 </div>

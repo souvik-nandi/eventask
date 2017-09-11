@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908202211) do
+ActiveRecord::Schema.define(version: 20170910031704) do
 
   create_table "allocations", force: :cascade do |t|
     t.integer "task_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20170908202211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.string "title"
+    t.decimal "value", default: "0.0"
+    t.integer "user_id"
+    t.integer "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_expenses_on_task_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|

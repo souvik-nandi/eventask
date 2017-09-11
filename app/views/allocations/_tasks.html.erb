@@ -8,6 +8,7 @@
         <th>Created by</th>
         <th>Associated Event</th>
         <th>Completion status</th>
+        <th>Expense</th> 
         <th>Allocate users</th>
       </tr>
     </thead>
@@ -16,7 +17,7 @@
       <% obj.each do |t| %>
       <tr>
         <td><%= link_to t.title, event_task_path(t.event, t) %>
-        <td><%= truncate(t.description, length: 50) %></td>
+        <td><%= truncate(t.description, length: 25) %></td>
         <td><%= t.deadline.localtime %></td>
         <td>
         <% if t.user %>
@@ -35,6 +36,7 @@
             <span class="label label-warning">Pending</span>
           <% end %>
         </td>
+        <td>&#x20b9; <%= t.expenses.sum("value") %></td>
         <td>
           <%= link_to "Edit Users", event_task_allocation_path(t.event, t), class: "btn btn-xs btn-default" %>
         </td>

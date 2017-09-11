@@ -1,0 +1,18 @@
+<h1 align="center">Expenses List</h1>
+<h3 align="center">Task: <%= link_to @task.title, event_task_path(@event, @task) %></h3>
+
+<div align="center">
+  <%= will_paginate @expenses %>
+</div>
+
+<% if @task.expenses.count > 0 %>
+<%= render 'expenses/expense', obj: @expenses %>
+<% else %>
+<div class="task-actions center">
+  <em>This task currently has no expenses.</em>
+</div>
+<% end %>
+
+<div align="center">
+  <%= will_paginate @expenses %>
+</div>

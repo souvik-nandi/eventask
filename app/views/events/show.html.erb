@@ -24,8 +24,15 @@
   <h4 class="center description"><strong>Description:</strong></h4>
   <hr>
   <%= simple_format(@event.description) %>
+  <div class="event-meta-details">
+    <small>
+      Created by: <%= @event.user ? @event.user.username : "unknown" %>,
+      <%= time_ago_in_words(@event.created_at) %> ago,
+      last updated: <%= time_ago_in_words(@event.updated_at) %> ago
+    </small>
+  </div>
   <div class="event-actions">
-    <% if logged_in? && (current_user == @event.user || current_user.admin? ) %>
+    <% if current_user == @event.user || current_user.admin? %>
     <%= link_to "Edit this event", edit_event_path(@event), class: "btn btn-xs btn-primary" %>
     <%= link_to "Delete this event", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete the event?"}, class: "btn btn-xs btn-danger" %>
     <% end %>

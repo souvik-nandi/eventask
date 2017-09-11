@@ -1,0 +1,20 @@
+<h1 align="center">Listing your Expenses</h1>
+
+<div align="center">
+  
+  <%= link_to "Create New Expense", new_user_expense_path(current_user), class: "create_task btn btn-md btn-primary" %>
+</div>
+<div align="center">
+  <%= will_paginate %>
+</div>
+
+<% if current_user.expenses.count > 0 %>
+<%= render 'expense', obj: @expenses %>
+<% else %>
+<div class="task-actions center">
+  <em>You currently have no expense.</em>
+</div>
+<% end %>
+<div align="center">
+  <%= will_paginate %>
+</div>

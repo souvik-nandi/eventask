@@ -1,9 +1,10 @@
 <h1 align="center">Listing all tasks</h1>
+<h3 align="center">Event: <%= link_to @event.title, event_path(@event) %></h3>
 
 <div align="center">
-  
   <%= link_to "Create New Task", new_event_task_path(@event), class: "create_task btn btn-md btn-primary" %>
 </div>
+
 <div align="center">
   <%= will_paginate %>
 </div>
@@ -15,6 +16,7 @@
   <em>This event currently has no tasks.</em>
 </div>
 <% end %>
+
 <div align="center">
   <%= will_paginate %>
 </div>

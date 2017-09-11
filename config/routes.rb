@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
   resources :events do
-  	resources :tasks do
+    resources :tasks do
+      get 'expense'
       get 'completed'
       get 'allocation'
       get 'userallocate'
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, except: [:new] do
     get 'tasks'
+    resources :expenses
   end
   
   get 'login', to: 'sessions#new'

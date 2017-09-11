@@ -1,0 +1,41 @@
+<h4>Expenses Table</h4>
+<div class="table-responsive">
+  <table class="table table-bordred table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Value</th>
+        <th>Task Associated</th>
+        <th>Created by</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% obj.each do |expense| %>
+      <tr>
+        <td><%= link_to expense.title, user_expense_path(current_user, expense) %></td>
+        <td><%= expense.value %></td>
+        <td><%= link_to expense.task.title, event_task_path(expense.task.event, expense.task) %></td>
+        <td>
+        <% if expense.user %>
+        <%= link_to expense.user.username, user_path(expense.user) %>
+        <% else %>
+          unknown
+        <% end %> 
+        </td>
+        <td><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_user_expense_path(current_user, expense), class: "btn btn-xs btn-primary" %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, user_expense_path(current_user, expense), method: :delete, data: { confirm: "Are you sure you want to delete the expense?"}, class: "btn btn-xs btn-danger" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+    
+    <tfoot>
+      <tr>
+        <td><strong>Total Expense:</strong></td>
+        <td colspan="5"><strong><%= obj.sum("value") %></strong></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
