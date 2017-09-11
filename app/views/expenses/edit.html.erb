@@ -30,7 +30,7 @@
         <%= f.label :task %>
       </div>
       <div class="col-sm-8">
-        <%= f.collection_select(:task_id, current_user.tasks, :id, :title) %>
+        <%= f.collection_select(:task_id, @expense.task, :id, :title) %>
       </div>
     </div>
     
