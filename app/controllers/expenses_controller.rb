@@ -2,6 +2,8 @@ class ExpensesController < ApplicationController
   
   before_action :set_login
   before_action :set_expense, only: [:edit, :update, :show, :destroy]
+  before_action :require_same_expense, only: [:edit, :update, :destroy]
+  before_action :require_task_user, only: [:show]
   before_action :total_expense, only: [:index]
 
   def index
@@ -66,6 +68,13 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def require_task_user
+    if !@expense.task.users.include?current_user and !current_user.admin?
+      flash[:danger] = "You are not authorised to perform the action"
+      redirect_to root_path
+    end
+  end
+
   def require_same_expense
     if current_user != @expense.user and !current_user.admin?
       flash[:danger] = "You can only edit your own expense"
@@ -75,7 +84,7 @@ class ExpensesController < ApplicationController
 
   def require_admin
     if logged_in? and !current_expense.admin?
-      flash[:danger] = "Only admin expenses can perform that action"
+      flash[:danger] = "Only admin can perform that action"
     end
   end
 
