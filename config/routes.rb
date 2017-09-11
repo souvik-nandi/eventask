@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, except: [:new] do
     get 'tasks'
-    resources :expenses
+    resources :expenses, shallow: true
   end
   
   get 'login', to: 'sessions#new'
