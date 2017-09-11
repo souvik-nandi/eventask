@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       restore_session
     end
     @user.destroy
-    flash[:danger] = "User and all expenses created by user have been deleted"
+    flash[:danger] = "User have been deleted"
     redirect_to users_path
   end
 
