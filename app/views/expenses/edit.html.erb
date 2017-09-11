@@ -30,7 +30,7 @@
         <%= f.label :task %>
       </div>
       <div class="col-sm-8">
-        <%= f.collection_select(:task_id, @expense.task, :id, :title) %>
+        <%= f.select :task_id, options_for_select([[@expense.task.title, @expense.task.id]]) %>
       </div>
     </div>
     
