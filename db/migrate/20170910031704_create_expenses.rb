@@ -3,8 +3,8 @@ class CreateExpenses < ActiveRecord::Migration[5.1]
     create_table :expenses do |t|
       t.string :title
       t.numeric :value, default: 0
-      t.belongs_to :user, index: true
-      t.belongs_to :task, index: true
+      t.references :user
+      t.references :task
       t.timestamps
     end
   end

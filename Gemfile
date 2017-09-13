@@ -32,6 +32,7 @@ group :production do
 end
 
 group :development do
+  gem "rails-erd"
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
