@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913114558) do
+ActiveRecord::Schema.define(version: 20170915110044) do
 
   create_table "allocations", force: :cascade do |t|
     t.integer "task_id"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20170913114558) do
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "login_status", default: false
   end
 
 end

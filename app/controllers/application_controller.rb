@@ -32,4 +32,11 @@ class ApplicationController < ActionController::Base
     @messages.push({type: type, text: text})
   end
 
+  def set_logger
+    if logged_in?
+      flash[:danger] = "You are already logged in"
+      redirect_to root_path
+    end
+  end
+
 end
