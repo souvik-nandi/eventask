@@ -1,0 +1,21 @@
+# MySQL. Versions 5.1.10 and up are supported.
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: mysql
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: eventaskdevelopment
+
+test:
+  <<: *default
+  database: eventask_test
+
+production:
+  <<: *default
+  database: eventask_production
